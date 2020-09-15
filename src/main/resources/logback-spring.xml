@@ -1,0 +1,23 @@
+<configuration debug="true">
+	<springProfile name="dev">
+		<appender name="CONSOLE"
+			class="ch.qos.logback.core.ConsoleAppender">
+			<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+		        <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+		            <prettyPrint>true</prettyPrint>
+		        </jsonFormatter>
+		        <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+		    </layout>
+		</appender>
+
+		<logger name="br.com.az" level="debug" additivity="false">
+			<appender-ref ref="CONSOLE" />
+		</logger>
+
+		<root level="error">
+			<appender-ref ref="CONSOLE" />
+		</root>
+
+
+	</springProfile>
+</configuration>
