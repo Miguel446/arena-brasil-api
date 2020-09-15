@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,6 +57,7 @@ public class RelatorioController {
 	 * @return ResponseEntity<Response<List<EventoDto>>>
 	 */
 	@GetMapping("/consultar")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ResponseEntity<Response<List<EventoDto>>> listar(@RequestParam LocalDate dataInicial,
 			@RequestParam LocalDate dataFinal, BindingResult result) {
 		log.info("Consultando relatório por datas entre {} e {}", dataInicial.toString(), dataFinal.toString());
